@@ -1,0 +1,51 @@
+{
+  "manifest_version": 2,
+  "name": "InstaMiner MEGA",
+  "version": "28",
+  "icons": {
+    "128": "ico.png"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "activeTab",
+    "http://*/",
+    "https://*/",
+    "cookies",
+    "proxy"
+  ],
+  "content_scripts": [
+  {
+    "matches": ["*://*.instagram.com/*"],
+      "js": ["jquery.js", "social/instagram/script.js", "social/instagram/logout.js", "social/instagram/login.js", "social/sync.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://twitter.com/*", "*://mobile.twitter.com/*"],
+      "js": ["jquery.js", "social/twitter/script.js", "social/sync.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://instagram777.ru/tasks/*"],
+      "js": ["jquery.js", "social/sync_task.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://myhide.ru/*"],
+      "js": ["social/myhide.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_title": "InstaMiner MEGA",
+    "default_icon": "ico.png",
+    "default_title": "InstaMiner MEGA"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://instaminer.goh.su/; object-src 'self'"
+}

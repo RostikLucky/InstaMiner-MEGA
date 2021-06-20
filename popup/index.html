@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>InstaMiner MEGA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="shards.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+</head>
+<body>
+<!-- Экран загрузки -->
+<div id="loading">
+    <div class="outer">
+        <div class="inner">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" 
+            style="enable-background:new 0 0 50 50;" xml:space="preserve">
+            <rect x="0" y="13" width="4" height="5" fill="#333">
+              <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+              <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+            </rect>
+            <rect x="10" y="13" width="4" height="5" fill="#333">
+              <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+              <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+            </rect>
+            <rect x="20" y="13" width="4" height="5" fill="#333">
+              <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+              <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+            </rect>
+          </svg>
+        </div>
+    </div>
+    <div class="alert alert-secondary" role="alert" 
+    style="margin-bottom: 0px; bottom: 0; position: fixed; width: 100%; background-color: #333333;">Проверьте подключение к интернету или к сайту Instagram777 и перезапустите бота!</div>
+</div>
+
+<div id="main" class="card text-center">
+    <!-- Меню -->
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item"><a class="nav-link active" href="#" id_elem="0">Добро пожаловать!</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="1">Главная страница</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="2">Аккаунты</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="3">Топ донатеров</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="5">Топ пользователей</a></li>
+        </ul>
+    </div>
+    <!-- Welcome страница -->
+    <div class="card-body" style="display: none;">
+        <div class="outer">
+            <div class="inner">
+                <h4 class="card-title">Добро пожаловать в InstaMiner MEGA</h4>
+                <p class="card-text" style="margin-bottom: 3px;">Данный бот выполняет задания за вас. В боте есть много разных настроек и <b>автосмена аккаунтов</b>!</p>
+                <p class="card-text"><b>Введите ваш ID от Telegram</b> для того, чтобы начать работу с ботом<br>
+                    <a href="https://telegra.ph/Uvedomleniya-v-Telegram-03-25" target="_blank">Как получить ID Telegram?</a>
+                </p>
+                <p class="card-text"><input type="number" class="form-control" placeholder="Ваш ID Telegram" id="telegram_id" 
+                    style="width: 30%; margin-left: calc(35% - 57.5px);float: left;border-radius: 6px 0px 0px 6px;">
+                    <a href="#" class="btn btn-primary" id="telegram_id_check" style="float: left;width: 115px;border-radius: 0px 6px 6px 0px; height: 40px;">Проверить</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Главная страница -->
+    <div class="card-body card_scroll" style="display: none;">
+        <div class="outer">
+            <div class="inner">
+                <!-- TITLE -->
+                <div class="card" style="width: 100%; box-shadow: none;">
+                    <h4 class="card-title" style="font-size: 35px; margin-top: 0px;">InstaMiner MEGA</h4>
+                    <p class="card-text" id="manifest_version"></p>
+                </div>
+                <!-- STATUS -->
+                <div id="cards_1">
+                    <div class="card" style="margin-top: 30px; width: 200px; float: left;">
+                        <button class="btn btn-outline-secondary" id="browser_focus" style="">Ваш баланс <span class="badge badge-secondary" id="your_balance">0.00₽</span></button>
+                    </div>
+                    <div class="card" style="margin-top: 30px; width: 250px; float: left;">
+                        <button class="btn btn-outline-secondary" style="">Бот выполнил <span class="badge badge-secondary" id="task_status">0/0</span> заданий</button>
+                    </div>
+                    <div class="card" style="margin-top: 30px; width: 200px; float: left;">
+                        <button class="btn btn-outline-secondary" style="">Бот заработал <span class="badge badge-secondary" id="bot_balance">0.00₽</span></button>
+                    </div>
+                </div>
+                <!-- STATUS 2 -->
+                <div id="cards_2">
+                    <div class="card" style="margin-top: 30px; width: 200px; float: left;">
+                        <button class="btn btn-outline-secondary" style="">Бот работает <span class="badge badge-secondary" id="stopwatch">00:00:00</span></button>
+                    </div>
+                    <div class="card" style="margin-top: 30px; width: 200px; float: left;">
+                        <button class="btn btn-outline-secondary" style="">Категория <span class="badge badge-secondary" id="bot_category">?</span></button>
+                    </div>
+                    <div class="card" style="margin-top: 30px; width: 200px; float: left;">
+                        <button class="btn btn-outline-secondary" style="">Аккаунт <span class="badge badge-secondary" id="account_num">№0</span></button>
+                    </div>
+                </div>
+                <!-- Кнопка запуска -->
+                <div class="card" id="cards_3">
+                    <button class="btn btn-outline-secondary" id="start_bot">Запустить бота</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-cog mr-2" style="margin-left: -7px;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Аккаунты -->
+    <div class="card-body card-body-acc" style="display: none;">
+        <div class="outer">
+            <div class="inner">
+                <div style="text-align: right; margin-bottom: -6px;">
+                    <span class="badge badge-pill badge-success" id="accounts_success">Рабочие аккаунты: 0</span>
+                    <span class="badge badge-pill badge-warning" id="accounts_warning">В блокировке: 0</span>
+                    <span class="badge badge-pill badge-danger" id="accounts_danger">Ошибок: 0</span>
+                </div>
+                <div class="card" id="change_account"></div>
+                <div class="display_block" style="margin-top: 15px;">  
+                    <a href="#" id="add_account_log_pass"><span class="badge badge-outline-primary"><i class="fa fa-plus mr-2"></i>Добавить аккаунт Instagram (Логин и Пароль)</span></a>
+                    <a href="#" id="add_account_log_cookie"><span class="badge badge-outline-primary"><i class="fa fa-plus-square mr-2"></i>Добавить аккаунт Instagram (Cookie, JSON формат)</span></a>
+                </div>
+                <div class="display_block" style="margin-top: 10px;">  
+                    <a href="#" style="position: relative;">
+                        <input type="file" id="upload_account" style="position: absolute; width: 100%;opacity: 0;cursor: pointer;" />
+                        <span class="badge badge-outline-primary" ><i class="fa fa-list mr-2"></i>Загрузить аккаунты списком</span>
+                    </a>
+                    <a href="#" id="save_account"><span class="badge badge-outline-primary"><i class="fa fa-download mr-2"></i>Сохранить все аккаунты списком</span></a>
+                </div>
+                <div class="display_block" style="margin-top: 10px;"><a href="#" id="clear_accounts"><span class="badge badge-outline-primary"><i class="fa fa-trash mr-2"></i>Очистить все аккаунты</span></a></div>
+                <p class="card-text" id="text_change_acc" style="margin-bottom: 1px; margin-top: 10px;">Включите автосмену аккаунтов в настройках бота</p>
+            </div>
+        </div>
+    </div>
+    <!-- Топ донатеров -->
+    <div class="card-body" id="donaters" style="display: none;">
+        <iframe src="https://instaminer.goh.su/donaters.php" style="width: 100%; height: 100%; border: 0px;"></iframe>
+    </div>
+    <!-- Ошибка входа в Instagram777 -->
+    <div class="card-body" style="display: none;">
+        <div class="outer">
+            <div class="inner">
+                <h4 class="card-title">Войдите в Instagram777</h4>
+                <p class="card-text" style="margin-bottom: 0;">Бот не сможет начать работу, пока вы не войдете в свой аккаунт Instagram777</p>
+                <p class="card-text" style="margin-bottom: 0;">На вашем балансе <b>(не рекламный)</b> Instagram777 должно быть <b>более 1 копейки</b>.</p>
+                <p class="card-text">Можете выполнить <b>одно или два задания</b> на сайте</p>
+                <a href="https://instagram777.ru/login.php" target="_blank" class="btn btn-primary" style="width: 215px; height: 40px;">Войти в аккаунт</a>
+                <a href="#" style="width: 40px; height: 40px; margin-left: 10px" id="update_page" class="btn btn-primary"><i class="fa fa-retweet mr-2" style="margin-left: -7.5px;"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Топ донатеров -->
+    <div class="card-body" id="top_users" style="display: none;">
+        <iframe src="about:blank" style="width: 100%; height: 100%; border: 0px;"></iframe>
+    </div>
+    <!-- Лог -->
+    <div class="alert alert-secondary" role="alert" style="margin-bottom: 0px;" id="bot_alert"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 80%; max-width: 80%; height: 90vh; max-height: 90vh;">
+        <div class="modal-content" style="height: 100%; overflow: scroll; padding-top: 60px;">
+            <div class="modal-header" style="position: fixed; width: 100%; background: white; z-index: 2; top: 0px">
+                <h5 class="modal-title" id="exampleModalLabel">Настройки</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <!-- Категории -->
+            <div class="modal-body" style="padding-top: 25px;">
+                <div class="custom-control custom-radio mb-3">
+                  <input type="radio" id="category_1" name="customRadio" class="custom-control-input">
+                  <label class="custom-control-label" for="category_1">Подписки Instagram</label>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                  <input type="radio" id="category_2" name="customRadio" class="custom-control-input">
+                  <label class="custom-control-label" for="category_2">Лайки Instagram</label>
+                </div>
+                <!-- <div class="custom-control custom-radio mb-3">
+                  <input type="radio" id="category_3" name="customRadio" class="custom-control-input">
+                  <label class="custom-control-label" for="category_3">Подписки / Лайки Twitter</label>
+                </div> -->
+            </div>
+            <!-- Дополнение -->
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Дополнение</h5></div>
+            <div class="modal-body">
+            <i class="fa fa-mouse-pointer mr-2"></i><a href="https://telegra.ph/Dopolnenie-k-InstaMiner-MEGA-06-05" target="_blank">Инструкция</a> по использованию дополнения<br>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="im_addition" name="im_addition" class="custom-control-input">
+                    <label class="custom-control-label" for="im_addition">Использовать дополнение</label><button class="btn btn-outline-secondary" style="background: none; border: none; color: white; width: 20px; margin-left: 20px; padding: 0px; height: 20px; border-radius: 10px;" id="testaddition_2"></button>
+                </div>
+                <div style="margin-top: 20px;">На <b>VDS/дедиках не видно мышки</b> при подключении через <b>Удаленное Управление</b>!</div>
+            </div>
+            <!-- Задержки -->
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Задержки</h5></div>
+            <div class="modal-body">
+            <i class="fa fa-clock mr-2"></i>Установите оптимальные задержки для ваших аккаунтов<br>
+            <label for="inp" class="inp">
+                <input type="number" placeholder="&nbsp;" id="delay_task_1">
+                    <span class="label">Задержка между выполнением задания (сек)</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="delay_task_2">
+                    <span class="label">Задержка между проверкой задания (сек)</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="delay_comments">
+                    <span class="label">Оставлять комментарий каждые (число) заданий</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="delay_change_category_1">
+                    <span class="label">Менять категорию через (число) лайков</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="delay_change_category_2">
+                    <span class="label">Менять категорию через (число) подписок</span>
+                    <span class="focus-bg"></span>
+                </label>
+            </div>
+            <!-- Уведомления -->
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Уведомления</h5></div>
+            <div class="modal-body">
+                <i class="fa fa-comments mr-2"></i>Включите уведомлеия в Telegram, чтобы не пропускать сообщения от бота<br>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="telegram_message" name="telegram_message" class="custom-control-input">
+                    <label class="custom-control-label" for="telegram_message">Включить уведомления в Telegram</label>
+                </div>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="telegram_captcha" name="telegram_captcha" class="custom-control-input">
+                    <label class="custom-control-label" for="telegram_captcha">Решать капчу с помощью сторонних расширений</label>
+                </div>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="telegram_sleep" name="telegram_sleep" class="custom-control-input">
+                    <label class="custom-control-label" for="telegram_sleep">Уведомлять о том, что бот ушел в сон</label>
+                </div>
+                <label for="inp" class="inp">
+                    <input type="text" placeholder="&nbsp;" id="telegram_browser">
+                    <span class="label">Имя браузера</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="telegram_balance">
+                    <span class="label">Уведомлять о заработке определенного кол-ва рублей</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="text" placeholder="&nbsp;" id="telegram_token">
+                    <span class="label">Токен телеграм бота</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="telegram_sync" name="telegram_sync" class="custom-control-input">
+                    <label class="custom-control-label" for="telegram_sync">Управлять ботом через Telegram</label>
+                </div>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="telegram_sync_2">
+                    <span class="label">Ждать команду каждые (число) секунд</span>
+                    <span class="focus-bg"></span>
+                </label>
+            </div>
+            <!-- Сон -->
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Сон</h5></div>
+            <div class="modal-body">
+                <i class="fa fa-pause mr-2"></i>Используйте функцию сна, для того, чтобы ваши аккаунты отдыхали<br>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="sleep_status" name="sleep_status" class="custom-control-input">
+                    <label class="custom-control-label" for="sleep_status">Включить сон</label>
+                </div>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="sleep_time_1">
+                    <span class="label">Уходить в сон через (число) минут</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="sleep_time_2">
+                    <span class="label">Уходить в сон на (число) минут</span>
+                    <span class="focus-bg"></span>
+                </label>
+            </div>
+            <!-- Автосмена -->
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Аккаунты Instagram</h5></div>
+            <div class="modal-body">
+                <i class="fa fa-check mr-2"></i>Включите автосмену аккаунтов, если у вас много аккаунтов
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="change_account_status" name="change_account_status" class="custom-control-input">
+                    <label class="custom-control-label" for="change_account_status">Включить автосмену аккаунтов</label>
+                </div>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="change_account_use" name="change_account_use" class="custom-control-input">
+                    <label class="custom-control-label" for="change_account_use">Не использовать аккаунты, которые во временной блокировке</label>
+                </div>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="change_account_task">
+                    <span class="label">Сменить аккаунт через (число) заданий</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="change_account_sleep">
+                    <span class="label">После блокировки всех аккаунтов, уходить в сон на (число) минут</span>
+                    <span class="focus-bg"></span>
+                </label>
+            </div>
+            <!-- Прокси -->
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Прокси</h5></div>
+            <div class="modal-body">
+                <i class="fa fa-check mr-2"></i>Включите использование прокси-сервера (если у вас есть)
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="proxy_server_status" name="proxy_server_status" class="custom-control-input">
+                    <label class="custom-control-label" for="proxy_server_status">Включить прокси-сервер</label>
+                </div>
+                <div class="modal-body" style="padding-top: 15px; padding-left: 3px; padding-bottom: 1px;">
+                    <div class="custom-control custom-radio mb-3">
+                      <input type="radio" id="proxy_server_1" name="customRadio2" class="custom-control-input">
+                      <label class="custom-control-label" for="proxy_server_1">Соединение http</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input type="radio" id="proxy_server_2" name="customRadio2" class="custom-control-input">
+                      <label class="custom-control-label" for="proxy_server_2">Соединение https</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input type="radio" id="proxy_server_3" name="customRadio2" class="custom-control-input">
+                      <label class="custom-control-label" for="proxy_server_3">Соединение socks4</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input type="radio" id="proxy_server_4" name="customRadio2" class="custom-control-input">
+                      <label class="custom-control-label" for="proxy_server_4">Соединение socks5</label>
+                    </div>
+                </div>
+                <label for="inp" class="inp" style=" margin-top: 3px;">
+                    <input type="text" placeholder="&nbsp;" id="proxy_server_ip">
+                    <span class="label">IP-адрес (IPv4):порт</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <p class="card-text" style="margin-bottom: -2px; margin-top: 4px; color: #ff3b3b"><b>Логин и пароль от прокси вводится на любой из этих страниц: </b></p>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="proxy_server_site_1" name="proxy_server_site_1" class="custom-control-input">
+                    <label class="custom-control-label" for="proxy_server_site_1">Включить прокси для Instagram777</label>
+                </div>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="proxy_server_site_2" name="proxy_server_site_2" class="custom-control-input">
+                    <label class="custom-control-label" for="proxy_server_site_2">Включить прокси для Instagram</label>
+                </div>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="proxy_server_site_3" name="proxy_server_site_3" class="custom-control-input">
+                    <label class="custom-control-label" for="proxy_server_site_3">Включить прокси для Twitter</label>
+                </div>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="proxy_server_site_4" name="proxy_server_site_4" class="custom-control-input">
+                    <label class="custom-control-label" for="proxy_server_site_4">Включить прокси для 2ip.ru</label>
+                </div>
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="proxy_server_site_5" name="proxy_server_site_5" class="custom-control-input">
+                    <label class="custom-control-label" for="proxy_server_site_5">Включить прокси для myhide.ru</label>
+                </div>
+                <hr>
+                <label for="inp" class="inp" style="margin-top: 0px;">
+                    <input type="text" placeholder="&nbsp;" id="console_log" value="[]">
+                    <span class="label">Лог бота (для разработчика)</span>
+                    <span class="focus-bg"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="jquery.js"></script>
+<script src="bootstrap.min.js"></script>
+<script type="text/javascript" src="script.js" charset="utf-8"></script>
+</body>
+</html>
