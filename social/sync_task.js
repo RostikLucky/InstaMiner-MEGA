@@ -1,7 +1,7 @@
 stop_page = false;
 chrome.storage.local.get("im_status", function (result) {
     if (result.im_status == true) {
-		if (document.location.href.indexOf("https://instagram777.ru/tasks/api.php?action=task_start") != -1) {
+		if (document.location.href.indexOf("https://wiq.ru/tasks/api.php?action=task_start") != -1) {
 			$("body").append(`<script>function open(val){}; function close() {}</script>`);
 			wait_info = setInterval(function() {
 				if ($(".col-md-4").length > 0) {

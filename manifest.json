@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "InstaMiner MEGA",
-  "version": "28",
+  "version": "29",
   "icons": {
     "128": "ico.png"
   },
@@ -29,7 +29,7 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["*://instagram777.ru/tasks/*"],
+      "matches": ["*://wiq.ru/tasks/*"],
       "js": ["jquery.js", "social/sync_task.js"],
       "run_at": "document_end"
     },

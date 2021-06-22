@@ -46,7 +46,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 		});
 
 		if (data[0] == "<task_start>") {
-			open_url("https://instagram777.ru/tasks/api.php?action=task_start&hash="+data[1]);
+			open_url("https://wiq.ru/tasks/api.php?action=task_start&hash="+data[1]);
 		}
 
 		if (data[0] == "<task_open>") {
@@ -257,7 +257,7 @@ function set_proxy(proxy_info) {
 		if (proxy_info.proxy_server_3 == true) {scheme2 = "SOCKS4"}
 		if (proxy_info.proxy_server_4 == true) {scheme2 = "SOCKS5"}
 
-		if (proxy_info.proxy_server_site_1 == true) {list.push("host == 'instagram777.ru'")}
+		if (proxy_info.proxy_server_site_1 == true) {list.push("host == 'wiq.ru'")}
 		if (proxy_info.proxy_server_site_2 == true) {list.push("host == '*.instagram.com' || host == 'instagram.com' || host == 'www.instagram.com'")}
 		if (proxy_info.proxy_server_site_3 == true) {list.push("host == 'twitter.com' || host == '*.twitter.com' || host == 'm.twitter.com'")}
 		if (proxy_info.proxy_server_site_4 == true) {list.push("host == '2ip.ru'")}

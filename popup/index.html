@@ -38,7 +38,7 @@
 <div id="main" class="card text-center">
     <!-- Меню -->
     <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
+        <ul class="nav nav-tabs card-header-tabs" style="margin-top: -5px;">
             <li class="nav-item"><a class="nav-link active" href="#" id_elem="0">Добро пожаловать!</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="1">Главная страница</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="2">Аккаунты</a></li>
@@ -49,16 +49,18 @@
     <!-- Welcome страница -->
     <div class="card-body" style="display: none;">
         <div class="outer">
-            <div class="inner">
-                <h4 class="card-title">Добро пожаловать в InstaMiner MEGA</h4>
-                <p class="card-text" style="margin-bottom: 3px;">Данный бот выполняет задания за вас. В боте есть много разных настроек и <b>автосмена аккаунтов</b>!</p>
-                <p class="card-text"><b>Введите ваш ID от Telegram</b> для того, чтобы начать работу с ботом<br>
+            <div class="inner" style="color: white;">
+                <h4 class="card-title" style="margin-bottom: 5px;">Добро пожаловать в InstaMiner MEGA</h4>
+                <p class="card-text" style="color: #212529; margin-bottom: 5px;"><b>Введите ваш ID от Telegram</b> для того, чтобы начать работу с ботом
+                </p>
+                 <p class="card-text" style="color: #212529; margin-bottom: 25px">
                     <a href="https://telegra.ph/Uvedomleniya-v-Telegram-03-25" target="_blank">Как получить ID Telegram?</a>
                 </p>
                 <p class="card-text"><input type="number" class="form-control" placeholder="Ваш ID Telegram" id="telegram_id" 
                     style="width: 30%; margin-left: calc(35% - 57.5px);float: left;border-radius: 6px 0px 0px 6px;">
                     <a href="#" class="btn btn-primary" id="telegram_id_check" style="float: left;width: 115px;border-radius: 0px 6px 6px 0px; height: 40px;">Проверить</a>
                 </p>
+                
             </div>
         </div>
     </div>
@@ -135,15 +137,15 @@
     <div class="card-body" id="donaters" style="display: none;">
         <iframe src="https://instaminer.goh.su/donaters.php" style="width: 100%; height: 100%; border: 0px;"></iframe>
     </div>
-    <!-- Ошибка входа в Instagram777 -->
+    <!-- Ошибка входа в wiq.ru -->
     <div class="card-body" style="display: none;">
         <div class="outer">
-            <div class="inner">
-                <h4 class="card-title">Войдите в Instagram777</h4>
-                <p class="card-text" style="margin-bottom: 0;">Бот не сможет начать работу, пока вы не войдете в свой аккаунт Instagram777</p>
-                <p class="card-text" style="margin-bottom: 0;">На вашем балансе <b>(не рекламный)</b> Instagram777 должно быть <b>более 1 копейки</b>.</p>
+            <div class="inner" style="color: #4e4e4e;">
+                <h4 class="card-title">Войдите в wiq.ru</h4>
+                <p class="card-text" style="margin-bottom: 0;">Бот не сможет начать работу, пока вы не войдете в свой аккаунт wiq.ru</p>
+                <p class="card-text" style="margin-bottom: 0;">На вашем балансе <b>(не рекламный)</b> wiq.ru должно быть <b>более 1 копейки</b>.</p>
                 <p class="card-text">Можете выполнить <b>одно или два задания</b> на сайте</p>
-                <a href="https://instagram777.ru/login.php" target="_blank" class="btn btn-primary" style="width: 215px; height: 40px;">Войти в аккаунт</a>
+                <a href="https://wiq.ru/login.php" target="_blank" class="btn btn-primary" style="width: 215px; height: 40px;">Войти в аккаунт</a>
                 <a href="#" style="width: 40px; height: 40px; margin-left: 10px" id="update_page" class="btn btn-primary"><i class="fa fa-retweet mr-2" style="margin-left: -7.5px;"></i></a>
             </div>
         </div>
@@ -336,7 +338,7 @@
                 <p class="card-text" style="margin-bottom: -2px; margin-top: 4px; color: #ff3b3b"><b>Логин и пароль от прокси вводится на любой из этих страниц: </b></p>
                 <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
                     <input type="checkbox" id="proxy_server_site_1" name="proxy_server_site_1" class="custom-control-input">
-                    <label class="custom-control-label" for="proxy_server_site_1">Включить прокси для Instagram777</label>
+                    <label class="custom-control-label" for="proxy_server_site_1">Включить прокси для wiq.ru</label>
                 </div>
                 <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
                     <input type="checkbox" id="proxy_server_site_2" name="proxy_server_site_2" class="custom-control-input">
@@ -365,7 +367,6 @@
     </div>
 </div>
 <script src="jquery.js"></script>
-<script src="bootstrap.min.js"></script>
-<script type="text/javascript" src="script.js" charset="utf-8"></script>
+<script src="bootstrap.min.js" charset="utf-8"></script>
 </body>
 </html>

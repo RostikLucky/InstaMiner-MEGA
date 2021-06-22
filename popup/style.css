@@ -1,5 +1,8 @@
 body {
   overflow: hidden;
+  background-image: url(bg.jpg);
+  background-size: cover;
+  background-position: bottom;
 }
 
 .outer {
@@ -341,4 +344,48 @@ input::-webkit-inner-spin-button {
   border: 0; 
   background-color: white; 
   color: #5a6169;
+}
+
+.card {
+  background: none;
+}
+
+.nav-tabs .nav-link {
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+
+.card-header-tabs {
+  margin-bottom: -1px;
+}
+
+.card-header-tabs .nav-link:hover {
+  border-bottom: 1px solid #ddd;
+}
+
+a {
+  color: #ffffff;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+.badge-outline-primary {
+  background: 0 0;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+#text_change_acc {
+  color: #212529;
+}
+
+#change_account {
+  background: white;
+}
+
+#manifest_version {
+  color: #212529;
 }
