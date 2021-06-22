@@ -47,6 +47,5 @@
     "default_icon": "ico.png",
     "default_title": "InstaMiner MEGA"
   },
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://instaminer.goh.su/; object-src 'self'",
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://raw.githubusercontent.com/; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://instaminer.goh.su/; object-src 'self'"
 }
