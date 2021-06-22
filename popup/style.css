@@ -389,3 +389,14 @@ a:hover {
 #manifest_version {
   color: #212529;
 }
+
+.nav-item {
+  height: 30px;
+  line-height: 10px;
+  font-size: 12px;
+  margin-top: -4px;
+}
+
+.nav-link {
+  height: 30px;
+}
