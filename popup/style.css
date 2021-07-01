@@ -1,6 +1,6 @@
 body {
   overflow: hidden;
-  background-image: url(bg.jpg);
+  background:#98b9dc;
   background-size: cover;
   background-position: bottom;
 }
@@ -183,6 +183,13 @@ input::-webkit-inner-spin-button {
   margin-left: 20px;
 }
 
+ .modal-dialog {
+    width: 80%;
+    max-width: 80%;
+    height: 90vh;
+    max-height: 90vh;
+  }
+
 @media screen and (max-width: 550px) {
   #cards_1 {
     grid-template-rows: 60px 60px 60px; 
@@ -206,6 +213,19 @@ input::-webkit-inner-spin-button {
     display: flow-root;
   }
 
+  .modal-dialog {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+  }
+
+  .card-header {
+    display: none;
+    margin-top: -50px;
+  }
+
   #cards_3 > .btn-outline-secondary {
     width: 310px;  height: 39px;
   }
@@ -226,23 +246,13 @@ input::-webkit-inner-spin-button {
 
   .card-header {
     display: none;
+    margin-top: -50px;
   }
 
   #cards_2 {
     float: none;
     margin-bottom: -20px;
   } 
-
-  #cards_3 {
-    margin-top: 30px;
-    width: 250px;
-    margin-left: calc(50% - 125px); 
-    display: flow-root;
-  }
-
-  #cards_3 > .btn-outline-secondary {
-    width: 210px; height: 39px;
-  }
 
   #cards_1 > .card {
     display: contents;
@@ -273,6 +283,7 @@ input::-webkit-inner-spin-button {
   transform: translate3d(0, 0, 0);
   transition: all 0.2s ease;
   pointer-events: none;
+  width: 125%;
 }
 
 .inp .focus-bg {
