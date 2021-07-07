@@ -1,6 +1,7 @@
 comment_delay = 0;
 click_addition = false;
 check_addition = false;
+st = false;
 chrome.storage.local.get("im_status", function (result) {
     if (result.im_status == true) {
         chrome.storage.local.get("im_comments_val", function (result2) {
@@ -37,27 +38,6 @@ chrome.storage.local.get("im_status", function (result) {
         }
     } else {
         window.onload = function () {
-            elem1 = '//*[@id="react-root"]/section/main/div/header';
-            if (XPatch(elem1) != null) {
-                add(elem1);
-            } 
-            function add(elem) {
-                st = false;
-                XPatch(elem).setAttribute("style", "margin-top: 20px;");
-                XPatch(elem).innerHTML = `<div id="im_mega_add" style="position: absolute; cursor: pointer;margin-left: 70px;margin-top: -40px;width: 160px; height: 30px; background-color: #262626; border-radius: 10px;text-align: center; color: white; line-height: 30px; font-size: 12px;">Добавить акк в бота</div> <div id="im_mega_clear" style="position: absolute; cursor: pointer;margin-left: 240px;margin-top: -40px;width: 160px; height: 30px; background-color: #262626; border-radius: 10px;text-align: center; color: white; line-height: 30px; font-size: 11px;">Очистить куки аккаунта</div>` + XPatch(elem).innerHTML;
-                document.getElementById("im_mega_add").onclick = function() {
-                    if (st == false) {
-                        st = true;
-                        android.add_acc();
-                        document.getElementById("im_mega_add").innerHTML = "Аккаунт добавлен!";
-                    }
-                }
-                document.getElementById("im_mega_clear").onclick = function() {
-                    android.clear_acc();
-                    setTimeout(function() {document.location.href = "https://www.instagram.com/";}, 500);
-
-                }
-            }
             setTimeout(function() {
                 if (XPatch('//*[@id="react-root"]/section/main/article') != null) {
                     wait_elem = setInterval(function() {
@@ -80,25 +60,42 @@ chrome.storage.local.get("im_status", function (result) {
 function inst() {
     if (document.body.textContent.indexOf("Это видео недоступно в вашей стране.") == -1) {
         if (document.body.textContent.indexOf("Подождите несколько минут") == -1) {
-            elem = '//*[@id="react-root"]/section/main/div[2]/div/div/div[2]/div[4]/button';
-            if (XPatch(elem) != null) {
-                android.block("instagram");
-                console.log("BLOCK: "+elem);
-            }
-            elem = '/html/body/div[1]/div/div/iframe';
-            if (XPatch(elem) != null) {
-                android.block("instagram");
-                console.log("BLOCK: "+elem);
-            }           
-            elem = '//*[@id="react-root"]/section/div/div/p[3]/text()';
-            if (XPatch(elem) != null) {
-                android.block("instagram");
-                console.log("BLOCK: "+elem);
-            }
-            //elem = '//*[@id="react-root"]/section/main/div/div/div/div/a';
-            //if (XPatch(elem) != null) {
-            //    android.next();
-            //}
+            setTimeout(function() {
+                elem = '//*[@id="react-root"]/section/main/div[2]/div/div/div[2]/div[4]/button';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }
+                elem = '/html/body/div[1]/div/div/iframe';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }           
+                elem = '//*[@id="react-root"]/section/div/div/p[3]/text';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }
+                elem = '//*[@id="react-root"]/section/main/div[2]/div/div/div[2]/div[5]/button';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }
+                elem = '//*[@id="react-root"]/section/main/div[2]/div/div/div[3]/div/button';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }
+                elem = '//*[@id="react-root"]/section/main/div[2]/div/div/div[2]/div[2]/h3';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }
+                //elem = '//*[@id="react-root"]/section/main/div/div/div/div/a';
+                //if (XPatch(elem) != null) {
+                //    android.next();
+                //}
+            }, 1500);
             elem = '//*[@id="react-root"]/section/div/div/div[3]/form/div[2]/span/button';
             if (XPatch(elem) != null) {
                 click(elem);
@@ -682,8 +679,24 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
                 check();
             }
         }
+
+        if (data[0] == "<im_mega_add>") {
+            if (st == false) {
+                st = true;
+                android.add_acc();
+                alert("Аккаунт добавлен!");
+            }
+        }
+
+        if (data[0] == "<im_mega_clear>") {
+            android.clear_acc();
+            setTimeout(function() {document.location.href = "https://www.instagram.com/";}, 500);
+        }
+
     }
 });
+
+
 function toDataURL(url, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "InstaMiner MEGA",
-  "version": "30",
+  "version": "31",
   "icons": {
     "128": "ico.png"
   },
@@ -15,7 +15,8 @@
     "http://*/",
     "https://*/",
     "cookies",
-    "proxy"
+    "proxy",
+    "contextMenus"
   ],
   "content_scripts": [
   {

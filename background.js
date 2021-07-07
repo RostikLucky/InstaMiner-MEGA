@@ -1,3 +1,22 @@
+size = [];
+im_size = false;
+
+chrome.contextMenus.create({
+    title: 'Добавить этот аккаунт в бота',
+    documentUrlPatterns: ["*://*.instagram.com/*"],
+    onclick: function(e){
+        sync_data("<im_mega_add>");
+    }
+}, function(){});
+
+chrome.contextMenus.create({
+    title: 'Очистить куки этого аккаунта',
+    documentUrlPatterns: ["*://*.instagram.com/*"],
+    onclick: function(e){
+       sync_data("<im_mega_clear>");
+    }
+}, function(){});
+
 tab_info = null;
 tab_info_addition = null;
 window_id = null;
@@ -5,21 +24,35 @@ click_addition = false;
 /// Открыть главное меню
 chrome.browserAction.onClicked.addListener(function() {
 	if (window_id == null) {
-		width = 950;
-		height = 580;
-	   	chrome.windows.create({'url': 'popup/index.html', 'type': 'popup', 'width': width, 'height': height, 'top': Math.round(window.screen.availHeight/2 - height/2), 'left': Math.round(window.screen.availWidth/2 - width/2)}, function(val) {
-	   		window_id = val.id;
-	   	});
+		chrome.storage.local.get("im_size_popup", function (result) { 
+			if (result.im_size_popup !== undefined) {
+				if (result.im_size_popup != []) {
+					im_size = true;
+				}
+			}
+
+			if (im_size == false) {
+				width = 950;
+				height = 580;
+				chrome.windows.create({'url': 'popup/index.html', 'type': 'popup', 'width': width, 'height': height, 'top': Math.round(window.screen.availHeight/2 - height/2), 'left': Math.round(window.screen.availWidth/2 - width/2)}, function(val) {
+			   		window_id = val.id;
+			   	});
+			} else {
+				width = result.im_size_popup[0];
+				height = result.im_size_popup[1];
+				chrome.windows.create({'url': 'popup/index.html', 'type': 'popup', 'width': width, 'height': height, 'top': result.im_size_popup[2], 'left': result.im_size_popup[3]}, function(val) {
+			   		window_id = val.id;
+			   	});
+			}
+		});
    	} else {
 		chrome.windows.update(window_id, {'focused': true}, (tab) => { });
    	}
 });
 
-/// Запретить изменение размера окна
-chrome.windows.onBoundsChanged.addListener(function() {
-	if (window_id != null) {
-		///chrome.windows.update(window_id, {'width': width}, (tab) => { });
-	}
+/// Сохранить изменение размера окна
+chrome.windows.onBoundsChanged.addListener(function(val) {
+	size = [val.width, val.height, val.top, val.left];
 });
 
 /// Остановить бота при закрытии меню
@@ -27,6 +60,7 @@ chrome.windows.onRemoved.addListener(function(id) {
 	if (id == window_id) {
 		window_id = null;
 		chrome.storage.local.set({"im_status": false});
+		chrome.storage.local.set({"im_size_popup": size});
 	}
 });
 
