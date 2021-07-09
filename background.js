@@ -10,6 +10,32 @@ chrome.contextMenus.create({
 }, function(){});
 
 chrome.contextMenus.create({
+    title: 'Добавить этот аккаунт в бота',
+    documentUrlPatterns: ["*://wiq.ru/*"],
+    onclick: function(e){
+        chrome.cookies.getAll({domain: "wiq.ru"}, function(cookies) { 
+			cookies = JSON.stringify(cookies);
+		    chrome.storage.local.get("im_accounts_wiq", function (result) { 
+		    	im_accounts_wiq = result.im_accounts_wiq;
+		    	im_accounts_wiq.accounts.push(cookies+`<status><span class="badge badge-outline-success">Готово <i class="fa fa-trash mr-2 trash"></i></span>`);
+		    	chrome.storage.local.set({'im_accounts_wiq': im_accounts_wiq});
+		    	sync_data("<add_acc_3>;"+Math.random());
+		    });
+    	});
+    }
+}, function(){});
+
+chrome.contextMenus.create({
+    title: 'Очистить куки этого аккаунта',
+    documentUrlPatterns: ["*://wiq.ru/*"],
+    onclick: function(e){
+       chrome.cookies.getAll({domain: "wiq.ru"}, function(cookies) { 
+		    for(var i=0; i<cookies.length;i++) { chrome.cookies.remove({url: "https://wiq.ru" + cookies[i].path, name: cookies[i].name});}
+		});
+    }
+}, function(){});
+
+chrome.contextMenus.create({
     title: 'Очистить куки этого аккаунта',
     documentUrlPatterns: ["*://*.instagram.com/*"],
     onclick: function(e){
@@ -30,7 +56,6 @@ chrome.browserAction.onClicked.addListener(function() {
 					im_size = true;
 				}
 			}
-
 			if (im_size == false) {
 				width = 950;
 				height = 580;
@@ -138,6 +163,20 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 			}, 1000)
 		}
 
+		if (data[0] == "<change_acc_wiq>") {
+			chrome.cookies.getAll({domain: "wiq.ru"}, function(cookies) { 
+			    for(var i=0; i<cookies.length;i++) { chrome.cookies.remove({url: "https://wiq.ru" + cookies[i].path, name: cookies[i].name});}
+			});
+			setTimeout(function() {
+				chrome.storage.local.get("im_acc_login_wiq", function (result3) { 
+					login_cookie_wiq(JSON.parse(result3.im_acc_login_wiq));
+					setTimeout(function() {
+						sync_data("<login_wiq_check>;"+Math.random());
+					}, 1000);
+				});
+			}, 1000);
+		}
+
 		if (data[0] == "<login_cookie_acc>") {
 			acc = JSON.parse(data[1]);
 			chrome.storage.local.set({'im_logout': "false"});
@@ -203,6 +242,33 @@ function login_cookie(acc) {
 	sync_data("<start>");
 }
 
+/// Вход по куки WIQ
+function login_cookie_wiq(acc) {
+	chrome.storage.local.set({'im_logout': "false"});
+	for (var i = 0; i < acc.length; i++) {
+		obj = acc[i];
+		obj.url = "https://wiq.ru/";
+		obj.httpOnly = "";
+		delete obj.httpOnly;
+		obj.hostOnly = "";
+		delete obj.hostOnly;
+		obj.sameSite = "";
+		delete obj.sameSite;
+		obj.session = "";
+		delete obj.session;
+		obj.storeId = "";
+		delete obj.storeId;
+		obj.id = "";
+		delete obj.id;
+		obj.expirationDate = "";
+		delete obj.expirationDate;
+		if (obj.domain != "") {
+			obj.domain = ".wiq.ru";
+			chrome.cookies.set(obj, function (cookie){});
+		}
+	}
+}
+
 /// Добавить акк 
 function add_acc() {
 	chrome.cookies.getAll({domain: ".instagram.com"}, function(cookies) { 
@@ -211,7 +277,7 @@ function add_acc() {
 	    	im_accounts = result.im_accounts;
 	    	im_accounts.accounts.push(cookies+`<status><span class="badge badge-outline-success">Готово <i class="fa fa-trash mr-2 trash"></i></span>`);
 	    	chrome.storage.local.set({'im_accounts': im_accounts});
-	    	sync_data("<add_acc_2>");
+	    	sync_data("<add_acc_2>;"+Math.random());
 	    });
     });
 }

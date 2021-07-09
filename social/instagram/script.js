@@ -16,24 +16,19 @@ chrome.storage.local.get("im_status", function (result) {
         like_post = false;
         if (document.location.host == "www.instagram.com") {
             if (document.location.href.indexOf(".com/accounts/login/") != -1) {
-                android.block("instagram");
+                android.block_2("instagram");
                 console.log("BLOCK: F2");
             }
-            elem = '//*[@id="react-root"]/section/main/article/div/div/div/div[2]/button';
-            if (XPatch(elem) != null) {
-                click(elem);
-            }
-            if (document.location.pathname.split("/").length >= 5) {
-                if (document.location.href.indexOf("www.instagram.com/https://www.instagram.com") != -1) {
-                    android.next();
-                } else {
-                    document.location.href = document.location.href.replace(document.location.pathname.split("/")[3]+"/", "");
+
+            if (document.location.href.indexOf("instagram.com/challenge") != -1) {
+                android.block_2("instagram");
+                console.log("BLOCK: F0");
+            } else {
+                window.onload = function () {
+                    setTimeout(function() {
+                        inst();
+                    }, 500);
                 }
-            }
-            window.onload = function () {
-                setTimeout(function() {
-                    inst();
-                }, 500);
             }
         }
     } else {
@@ -91,10 +86,30 @@ function inst() {
                     android.block("instagram");
                     console.log("BLOCK: "+elem);
                 }
+                elem = '//*[@id="react-root"]/section/div/div/div[2]/form/span/button';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }
+                elem = '//*[@id="react-root"]/section/div/div/div[1]/h2';
+                if (XPatch(elem) != null) {
+                    android.block("instagram");
+                    console.log("BLOCK: "+elem);
+                }
+                
+                
                 //elem = '//*[@id="react-root"]/section/main/div/div/div/div/a';
                 //if (XPatch(elem) != null) {
                 //    android.next();
                 //}
+                if (document.location.pathname.split("/").length >= 5) {
+                    if (document.location.href.indexOf("www.instagram.com/https://www.instagram.com") != -1) {
+                        android.next();
+                    } else {
+                        document.location.href = document.location.href.replace(document.location.pathname.split("/")[3]+"/", "");
+                    }
+                }
+
             }, 1500);
             elem = '//*[@id="react-root"]/section/div/div/div[3]/form/div[2]/span/button';
             if (XPatch(elem) != null) {
@@ -113,7 +128,7 @@ function inst() {
                             elem4 = '//*[@id="react-root"]/section/div/div/div[3]/a';
                             elem5 = '/html/body/div/div[1]/div/div/p';
                             if (XPatch(elem1) != null || XPatch(elem2) != null || XPatch(elem3) != null || XPatch(elem4) != null || XPatch(elem5) != null) {
-                                android.block("instagram");
+                                android.block_2("instagram");
                                 if (XPatch(elem1) != null) {
                                     console.log("BLOCK: "+elem1);
                                 }
@@ -624,6 +639,7 @@ function XPatch(xpatch_val) {
         }
         XPatch_elem = document.evaluate(xpatch_val, document, null, XPathResult.ANY_TYPE, null).iterateNext();
     }
+    if (XPatch_elem != null) {console.log("SCRIPT: "+xpatch_val)}
     return XPatch_elem;
 }
 
@@ -807,7 +823,7 @@ function check() {
                 elem1 = "/html/body/div[4]/div/div/div/div[2]/button[2]";
                 elem2 = "/html/body/div[6]/div/div/div/div[2]/button[2]";
                 if (XPatch(elem1) != null || XPatch(elem2) != null) {
-                    android.block("instagram");
+                    android.block_2("instagram");
                     if (XPatch(elem1) != null) {
                         console.log("BLOCK: "+elem1);
                     } 
@@ -819,7 +835,7 @@ function check() {
                     elem2 = "/html/body/div[5]/div/div[2]/div/div/div/div[3]/a";
                     elem3 = '//*[@id="loginForm"]/div[1]/div[1]/div/label/input';
                     if (XPatch(elem1) != null || XPatch(elem2) != null || XPatch(elem3) != null) {
-                        android.block("instagram");
+                        android.block_2("instagram");
                         if (XPatch(elem1) != null) {
                             console.log("BLOCK: "+elem1);
                         } 
@@ -832,7 +848,7 @@ function check() {
                     } else {
                         elem1 = "/html/body/div[5]/div/div/div/div[1]/h3";
                         if (XPatch(elem1) != null) {
-                            android.block("instagram");
+                            android.block_2("instagram");
                             console.log("BLOCK: "+elem1);
                         }
                     }

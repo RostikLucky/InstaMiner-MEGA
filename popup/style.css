@@ -81,6 +81,39 @@ body {
   line-height: 25px;
 }
 
+#change_account_2 {
+  padding-top: 1rem; 
+  margin-top: 15px;
+}
+
+#change_account_2 > .log_pass {
+  display: -webkit-box;
+}
+
+#change_account_2 > .log_pass > .form-group {
+  max-width: 44%;
+}
+
+#change_account_2 > .log_cookie > .form-group {
+  min-width: 88%;
+}
+
+#change_account_2 > .log_pass > .info > .badge > .trash {
+  margin-top: 6px;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+}
+
+#change_account_2 > .log_pass > .info {
+  width: calc(12% - 35px);
+}
+
+#change_account_2 > .log_pass > .info > .badge {
+  width: 100%;
+  line-height: 25px;
+}
+
 #min_size {
   position: fixed;
   top: 0;
@@ -151,6 +184,18 @@ input::-webkit-inner-spin-button {
   }
 
   #change_account > .log_pass > .info {
+    width: calc(14% - 35px);
+  }
+
+  #change_account_2 > .log_pass > .form-group {
+    max-width: 43%;
+  }
+
+  #change_account_2 > .log_cookie > .form-group {
+    min-width: 86%;
+  }
+
+  #change_account_2 > .log_pass > .info {
     width: calc(14% - 35px);
   }
 }
@@ -393,7 +438,15 @@ a:hover {
   color: #212529;
 }
 
+#text_change_acc_2 {
+  color: #212529;
+}
+
 #change_account {
+  background: white;
+}
+
+#change_account_2 {
   background: white;
 }
 

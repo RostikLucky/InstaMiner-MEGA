@@ -1,4 +1,5 @@
 temp_block = "<block>";
+temp_block_2 = "<block_2>";
 temp_next = "<close_tab_no_load>";
 class Android {
 	next() {
@@ -12,6 +13,11 @@ class Android {
 
 	block(val) {
 		sync_data(temp_block+";"+val);
+		temp_block = "<block_temp>";
+	}
+
+	block_2(val) {
+		sync_data(temp_block_2+";"+val);
 		temp_block = "<block_temp>";
 	}
 

@@ -42,6 +42,7 @@
             <li class="nav-item"><a class="nav-link active" href="#" id_elem="0">Добро пожаловать!</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="1">Главная страница</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="2">Аккаунты</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="6">Аккаунты WIQ</a></li>
         </ul>
     </div>
     <!-- Welcome страница -->
@@ -151,6 +152,17 @@
     <!-- Топ донатеров -->
     <div class="card-body" id="top_users" style="display: none;">
         
+    </div>
+
+     <!-- Аккаунты WIQ -->
+    <div class="card-body card-body-acc" style="display: none;">
+        <div class="outer">
+            <div class="inner">
+                <div class="card" id="change_account_2"></div>
+                <p class="card-text" id="text_change_acc_2" style="margin-bottom: 1px; margin-top: 10px;">Включите автосмену аккаунтов WIQ в настройках бота</p>
+                <p class="card-text" style="margin-bottom: 1px; margin-top: 10px;"><a href="https://telegra.ph/Kak-dobavit-akkaunty-WIQ-v-bota-07-07" target="_blank">Инструкция по добавлению аккаунтов</a></p>
+            </div>
+        </div>
     </div>
     <!-- Лог -->
     <div class="alert alert-secondary" role="alert" style="margin-bottom: 0px;" id="bot_alert"></div>
@@ -280,7 +292,7 @@
                 </label>
             </div>
             <!-- Автосмена -->
-            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Аккаунты Instagram</h5></div>
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Автосмена аккаунтов Instagram</h5></div>
             <div class="modal-body">
                 <i class="fa fa-check mr-2"></i>Включите автосмену аккаунтов, если у вас много аккаунтов
                 <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
@@ -299,6 +311,20 @@
                 <label for="inp" class="inp">
                     <input type="number" placeholder="&nbsp;" id="change_account_sleep">
                     <span class="label">После блокировки всех аккаунтов, уходить в сон на (число) минут</span>
+                    <span class="focus-bg"></span>
+                </label>
+            </div>
+            <!-- Автосмена WIQ -->
+            <div class="modal-footer" style="justify-content: end; padding-left: 33px; padding-top: 13px; padding-bottom: 0px;"><h5 class="modal-title">Автосмена аккаунтов WIQ</h5></div>
+            <div class="modal-body">
+                <i class="fa fa-check mr-2"></i>Включите автосмену аккаунтов для того, чтобы у вас было больше заданий
+                <div class="custom-control custom-toggle my-2" style="margin-top: 15px!important;">
+                    <input type="checkbox" id="change_account_status_wiq" name="change_account_status_wiq" class="custom-control-input">
+                    <label class="custom-control-label" for="change_account_status_wiq">Включить автосмену аккаунтов WIQ</label>
+                </div>
+                <label for="inp" class="inp">
+                    <input type="number" placeholder="&nbsp;" id="change_account_task_wiq">
+                    <span class="label">Сменить аккаунт через (число) заданий</span>
                     <span class="focus-bg"></span>
                 </label>
             </div>

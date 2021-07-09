@@ -1,17 +1,33 @@
 chrome.storage.local.get("im_logout", function (result) { 
 	if (result.im_logout == "true1") {
 		chrome.storage.local.get("im_acc_login", function (result) { 
-			if (XPatch('//*[@id="react-root"]/section/main/article/div/div/div/div[3]/button[1]') != null) {
-	            XPatch('//*[@id="react-root"]/section/main/article/div/div/div/div[3]/button[1]').click();
-	        } 
-	        if (XPatch('//*[@id="react-root"]/section/main/article/div[2]/div[2]/div/p/button[1]') != null) {
-	            XPatch('//*[@id="react-root"]/section/main/article/div[2]/div[2]/div/p/button[1]').click();
-	        } 
-	        elem = '//*[@id="react-root"]/section/div/div/div[3]/form/div[2]/span/button';
-            if (XPatch(elem) != null) {
-                XPatch(elem).click();
-            }
             setTimeout(function() {
+            	if (XPatch('//*[@id="react-root"]/section/main/article/div/div/div/div[3]/button[1]') != null) {
+	           		XPatch('//*[@id="react-root"]/section/main/article/div/div/div/div[3]/button[1]').click();
+		        } 
+		        if (XPatch('//*[@id="react-root"]/section/main/article/div[2]/div[2]/div/p/button[1]') != null) {
+		            XPatch('//*[@id="react-root"]/section/main/article/div[2]/div[2]/div/p/button[1]').click();
+		        } 
+		        elem = '//*[@id="react-root"]/section/div/div/div[3]/form/div[2]/span/button';
+	            if (XPatch(elem) != null) {
+	                XPatch(elem).click();
+	            }
+
+	            elem = '//*[@id="react-root"]/div/div/section/main/article/div[2]/div/div/div[3]/span/button';
+	            if (XPatch(elem) != null) {
+	                XPatch(elem).click();
+	            }
+
+	            elem = '//*[@id="react-root"]/section/main/article/div[2]/div/div/div[3]/span/button';
+	            if (XPatch(elem) != null) {
+	                XPatch(elem).click();
+	            }
+
+	            elem = '//*[@id="react-root"]/section/main/div/div/div/div/div[3]/span/button';
+	            if (XPatch(elem) != null) {
+	                XPatch(elem).click();
+	            }
+
 				if (result.im_acc_login.indexOf("[{") == -1) {
 					login(result.im_acc_login.split(":")[0], result.im_acc_login.split(":")[1]);
 				} else {
@@ -24,7 +40,6 @@ chrome.storage.local.get("im_logout", function (result) {
 				            XPatch('//*[@id="react-root"]/section/main/article/div/div/div/div[3]/button[1]').click();
 				        }
 						if (
-				            XPatch('//*[@id="react-root"]/section/main/article/div/div/div/div[2]/button') != null ||
 				            XPatch('//*[@id="loginForm"]/div/div[1]/div/label/input') != null ||
 				            XPatch('//*[@id="loginForm"]/div[1]/div[1]/div/label/input') != null ||
             				document.querySelector('input[name="username"]') != null
@@ -225,6 +240,7 @@ function XPatch(xpatch_val) {
         }
         XPatch_elem = document.evaluate(xpatch_val, document, null, XPathResult.ANY_TYPE, null).iterateNext();
     }
+    if (XPatch_elem != null) {console.log("LOGIN: "+xpatch_val)}
     return XPatch_elem;
 }
 

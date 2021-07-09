@@ -35,6 +35,7 @@ chrome.storage.local.get("im_logout", function (result) {
 			        }
 			        XPatch_elem = document.evaluate(xpatch_val, document, null, XPathResult.ANY_TYPE, null).iterateNext();
 			    }
+			    if (XPatch_elem != null) {console.log("LOGOUT: "+xpatch_val)}
 			    return XPatch_elem;
 			}
     	}
