@@ -77,3 +77,12 @@ function sync_data(val) {
 	  	data: val
 	});
 }
+
+console.output = [];
+console.log = (function(log) {
+  return function() {
+    log.apply(console, arguments);
+    console.output.push(JSON.stringify(arguments));
+    sync_data("<CONSOLE>;"+JSON.stringify(arguments));
+  }
+}(console.log));

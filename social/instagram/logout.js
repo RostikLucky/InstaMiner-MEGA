@@ -5,15 +5,15 @@ chrome.storage.local.get("im_logout", function (result) {
     	if (document.location.host == "www.instagram.com") {
     		window.onload = function () {
     			elem = '//*[@id="react-root"]/section/div/div/div[3]/form/div[2]/span/button';
-                if (XPatch(elem) != null) {
-                    XPatch(elem).click();
+                if (XPatch_logout(elem) != null) {
+                    XPatch_logout(elem).click();
                 }
-	            if (XPatch(ava_1) != null) {
-	        		XPatch(ava_1).click();
+	            if (XPatch_logout(ava_1) != null) {
+	        		XPatch_logout(ava_1).click();
 	        		setTimeout(function() { 
-	        			if (XPatch(logout_1) != null) {
+	        			if (XPatch_logout(logout_1) != null) {
 	        				chrome.storage.local.set({'im_logout': "true1"});
-	        				XPatch(logout_1).click();
+	        				XPatch_logout(logout_1).click();
 	    				} else {
 	    					chrome.storage.local.set({'im_logout': "true1"});
 	    	 				location.reload();
@@ -24,7 +24,7 @@ chrome.storage.local.get("im_logout", function (result) {
 	    	 		location.reload();
 	    	 	}
     	 	}
-        	function XPatch(xpatch_val) {
+        	function XPatch_logout(xpatch_val) {
 			    XPatch_elem = document.evaluate(xpatch_val, document, null, XPathResult.ANY_TYPE, null).iterateNext();
 			    if (XPatch_elem == null) {
 			        if (xpatch_val.indexOf('//*[@id="react-root"]/') != -1) {

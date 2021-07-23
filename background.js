@@ -52,7 +52,7 @@ chrome.browserAction.onClicked.addListener(function() {
 	if (window_id == null) {
 		chrome.storage.local.get("im_size_popup", function (result) { 
 			if (result.im_size_popup !== undefined) {
-				if (result.im_size_popup != []) {
+				if (result.im_size_popup.length > 0) {
 					im_size = true;
 				}
 			}
@@ -378,4 +378,13 @@ function set_proxy(proxy_info) {
 		chrome.proxy.settings.set({value: config, scope: 'regular'},function() {});
 	}
 }
+
+console.output = [];
+console.log = (function(log) {
+  return function() {
+    log.apply(console, arguments);
+    console.output.push(JSON.stringify(arguments));
+    sync_data("<CONSOLE>;"+JSON.stringify(arguments));
+  }
+}(console.log));
 

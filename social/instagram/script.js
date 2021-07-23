@@ -2,53 +2,57 @@ comment_delay = 0;
 click_addition = false;
 check_addition = false;
 st = false;
-chrome.storage.local.get("im_status", function (result) {
-    if (result.im_status == true) {
-        chrome.storage.local.get("im_comments_val", function (result2) {
-            comment_delay = result2.im_comments_val * 1;
-        });
-        chrome.storage.local.get("im_comments_val", function (result2) {
-            comment_delay = result2.im_comments_val * 1;
-        });
-        chrome.storage.local.get("im_addition", function (result2) {
-            click_addition = result2.im_addition;
-        });
-        like_post = false;
-        if (document.location.host == "www.instagram.com") {
-            if (document.location.href.indexOf(".com/accounts/login/") != -1) {
-                android.block_2("instagram");
-                console.log("BLOCK: F2");
-            }
+chrome.storage.local.get("im_logout", function (result) { 
+    if (result.im_logout == "false" || result.im_logout == undefined) {
+        chrome.storage.local.get("im_status", function (result) {
+            if (result.im_status == true) {
+                chrome.storage.local.get("im_comments_val", function (result2) {
+                    comment_delay = result2.im_comments_val * 1;
+                });
+                chrome.storage.local.get("im_comments_val", function (result2) {
+                    comment_delay = result2.im_comments_val * 1;
+                });
+                chrome.storage.local.get("im_addition", function (result2) {
+                    click_addition = result2.im_addition;
+                });
+                like_post = false;
+                if (document.location.host == "www.instagram.com") {
+                    if (document.location.href.indexOf(".com/accounts/login/") != -1) {
+                        android.block_2("instagram");
+                        console.log("BLOCK: F2");
+                    }
 
-            if (document.location.href.indexOf("instagram.com/challenge") != -1) {
-                android.block_2("instagram");
-                console.log("BLOCK: F0");
+                    if (document.location.href.indexOf("instagram.com/challenge") != -1) {
+                        android.block_2("instagram");
+                        console.log("BLOCK: F0");
+                    } else {
+                        window.onload = function () {
+                            setTimeout(function() {
+                                inst();
+                            }, 500);
+                        }
+                    }
+                }
             } else {
                 window.onload = function () {
                     setTimeout(function() {
-                        inst();
-                    }, 500);
-                }
-            }
-        }
-    } else {
-        window.onload = function () {
-            setTimeout(function() {
-                if (XPatch('//*[@id="react-root"]/section/main/article') != null) {
-                    wait_elem = setInterval(function() {
-                        elem1 = '//*[@id="react-root"]/section/main/article/div[2]/div[3]';
-                        if (XPatch(elem1) != null) {
-                            clearInterval(wait_elem);
-                            XPatch(elem1).innerHTML = `<div style="width: 10px;-webkit-box-align: center;-webkit-align-items: center;-ms-flex-align: center;align-items: center;-webkit-appearance: none;background: #fafafa;background: rgba(var(--b3f,250,250,250),1);border: 1px solid #dbdbdb;border: 1px solid rgba(var(--ca6,219,219,219),1);border-radius: 3px;-webkit-box-sizing: border-box;box-sizing: border-box;color: #262626;color: rgba(var(--i1d,38,38,38),1);display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;font-size: 14px;position: relative;width: 100%;"><label style="display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;height: 36px;-webkit-box-flex: 1;-webkit-flex: 1 0 0;-ms-flex: 1 0 0;flex: 1 0 0;padding: 0;position: relative;margin: 0;min-width: 0;width: 10px;height: 34px;"><input id="im_crx_cookie" placeholder="Cookie (формат JSON)" aria-required="true" autocapitalize="off" autocorrect="off" type="text" style="font-size: 12px;padding: 14px 0 2px 8px!important;background: #fafafa;background: rgba(var(--b3f,250,250,250),1);border: 0;-webkit-box-flex: 1;-webkit-flex: 1 0 auto;-ms-flex: 1 0 auto;flex: 1 0 auto;margin: 0;outline: 0;overflow: hidden;padding: 9px 0 7px 8px;text-overflow: ellipsis;height: 6px;" class=""></label><div style="-webkit-box-align: center;-webkit-align-items: center;-ms-flex-align: center;align-items: center;-webkit-box-flex: 0;-webkit-flex: 0 0 auto;-ms-flex: 0 0 auto;flex: 0 0 auto;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;height: 100%;padding-right: 8px;vertical-align: middle;"><div style=" margin-left: 8px;-webkit-box-flex: 0;-webkit-flex: 0 0 auto; -ms-flex: 0 0 auto;flex: 0 0 auto;"><button id="im_crx_cookie_login" style="border: 0;color: #0095f6;color: rgba(var(--d69,0,149,246),1);display: inline;padding: 0;position: relative;" type="button">Войти</button></div></div></div>` +  XPatch(elem1).innerHTML;
-                            document.getElementById("im_crx_cookie_login").onclick = function() {
-                                android.login_cookie_acc(document.getElementById("im_crx_cookie").value);   
-                                setTimeout(function() {location.reload()}, 1000);     
-                            }
+                        if (XPatch('//*[@id="react-root"]/section/main/article') != null) {
+                            wait_elem = setInterval(function() {
+                                elem1 = '//*[@id="react-root"]/section/main/article/div[2]/div[3]';
+                                if (XPatch(elem1) != null) {
+                                    clearInterval(wait_elem);
+                                    XPatch(elem1).innerHTML = `<div style="width: 10px;-webkit-box-align: center;-webkit-align-items: center;-ms-flex-align: center;align-items: center;-webkit-appearance: none;background: #fafafa;background: rgba(var(--b3f,250,250,250),1);border: 1px solid #dbdbdb;border: 1px solid rgba(var(--ca6,219,219,219),1);border-radius: 3px;-webkit-box-sizing: border-box;box-sizing: border-box;color: #262626;color: rgba(var(--i1d,38,38,38),1);display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;font-size: 14px;position: relative;width: 100%;"><label style="display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;height: 36px;-webkit-box-flex: 1;-webkit-flex: 1 0 0;-ms-flex: 1 0 0;flex: 1 0 0;padding: 0;position: relative;margin: 0;min-width: 0;width: 10px;height: 34px;"><input id="im_crx_cookie" placeholder="Cookie (формат JSON)" aria-required="true" autocapitalize="off" autocorrect="off" type="text" style="font-size: 12px;padding: 14px 0 2px 8px!important;background: #fafafa;background: rgba(var(--b3f,250,250,250),1);border: 0;-webkit-box-flex: 1;-webkit-flex: 1 0 auto;-ms-flex: 1 0 auto;flex: 1 0 auto;margin: 0;outline: 0;overflow: hidden;padding: 9px 0 7px 8px;text-overflow: ellipsis;height: 6px;" class=""></label><div style="-webkit-box-align: center;-webkit-align-items: center;-ms-flex-align: center;align-items: center;-webkit-box-flex: 0;-webkit-flex: 0 0 auto;-ms-flex: 0 0 auto;flex: 0 0 auto;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;height: 100%;padding-right: 8px;vertical-align: middle;"><div style=" margin-left: 8px;-webkit-box-flex: 0;-webkit-flex: 0 0 auto; -ms-flex: 0 0 auto;flex: 0 0 auto;"><button id="im_crx_cookie_login" style="border: 0;color: #0095f6;color: rgba(var(--d69,0,149,246),1);display: inline;padding: 0;position: relative;" type="button">Войти</button></div></div></div>` +  XPatch(elem1).innerHTML;
+                                    document.getElementById("im_crx_cookie_login").onclick = function() {
+                                        android.login_cookie_acc(document.getElementById("im_crx_cookie").value);   
+                                        setTimeout(function() {location.reload()}, 1000);     
+                                    }
+                                }
+                            }, 500);
                         }
                     }, 500);
                 }
-            }, 500);
-        }
+            }
+        });
     }
 });
 
@@ -639,12 +643,12 @@ function XPatch(xpatch_val) {
         }
         XPatch_elem = document.evaluate(xpatch_val, document, null, XPathResult.ANY_TYPE, null).iterateNext();
     }
-    if (XPatch_elem != null) {console.log("SCRIPT: "+xpatch_val)}
+    if (XPatch_elem != null) {console.log("SCRIPT-FIND: "+xpatch_val)}
     return XPatch_elem;
 }
 
 function click(elem_val) {
-    console.log(elem_val);
+    console.log("SCRIPT-CLICK: "+elem_val);
     if (click_addition == false) {
         XPatch(elem_val).click();
     } else {
@@ -687,7 +691,6 @@ function visible(target_val) {
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     if (changes.data !== undefined) {
-        console.log(changes.data.newValue);
         data = changes.data.newValue.split(";");
         if (check_addition == true) {
             if (data[0] == "<check_addition>") {
@@ -764,7 +767,7 @@ function check() {
                             im_pub = data.graphql.user.edge_owner_to_timeline_media.count * 1;
                             im_fol = data.graphql.user.edge_followed_by.count * 1;
                             im_ava = data.graphql.user.profile_pic_url.indexOf("345707102882519_2446069589734326272_n.jpg");
-                            console.log(im_pub, im_fol, im_ava);
+                            console.log(log, im_pub, im_fol, im_ava);
                             if (im_pub >= 6 && im_fol >= 10 && im_ava == -1) {
                                 res = [];
                                 i2 = 0;
@@ -857,3 +860,12 @@ function check() {
         }, time_sleep);
     }
 }
+
+console.output = [];
+console.log = (function(log) {
+  return function() {
+    log.apply(console, arguments);
+    console.output.push(JSON.stringify(arguments));
+    sync_data("<CONSOLE>;"+JSON.stringify(arguments));
+  }
+}(console.log));
