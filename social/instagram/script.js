@@ -37,7 +37,7 @@ chrome.storage.local.get("im_logout", function (result) {
                                     if (inst_not_find > 100) {
                                         android.next_task();
                                     }
-                                }, 100);
+                                }, 300);
                             }
                         }
                     }
