@@ -1,6 +1,7 @@
 comment_delay = 0;
 click_addition = false;
 check_addition = false;
+inst_not_find = 0;
 st = false;
 chrome.storage.local.get("im_logout", function (result) { 
     if (result.im_logout == "false" || result.im_logout == undefined) {
@@ -20,16 +21,23 @@ chrome.storage.local.get("im_logout", function (result) {
                     if (document.location.href.indexOf(".com/accounts/login/") != -1) {
                         android.block_2("instagram");
                         console.log("BLOCK: F2");
-                    }
-
-                    if (document.location.href.indexOf("instagram.com/challenge") != -1) {
-                        android.block_2("instagram");
-                        console.log("BLOCK: F0");
                     } else {
-                        window.onload = function () {
-                            setTimeout(function() {
-                                inst();
-                            }, 500);
+                        if (document.location.href.indexOf("instagram.com/challenge") != -1) {
+                            android.block_2("instagram");
+                            console.log("BLOCK: F0");
+                        } else {
+                            if (document.location.href.indexOf("instagram.com/terms/unblock") != -1) {
+                                android.block_2("instagram");
+                                console.log("BLOCK: F0-2");
+                            } else {
+                                inst_find = setInterval(function() {
+                                    inst();
+                                    inst_not_find++;
+                                    if (inst_not_find > 100) {
+                                        android.next_task();
+                                    }
+                                }, 100);
+                            }
                         }
                     }
                 }
@@ -101,7 +109,6 @@ function inst() {
                     console.log("BLOCK: "+elem);
                 }
                 
-                
                 //elem = '//*[@id="react-root"]/section/main/div/div/div/div/a';
                 //if (XPatch(elem) != null) {
                 //    android.next();
@@ -130,8 +137,7 @@ function inst() {
                             elem2 = '//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div/div/div/div[2]/div[1]/div';
                             elem3 = '/html/body/div/section/div/div/form/input[2]';
                             elem4 = '//*[@id="react-root"]/section/div/div/div[3]/a';
-                            elem5 = '/html/body/div/div[1]/div/div/p';
-                            if (XPatch(elem1) != null || XPatch(elem2) != null || XPatch(elem3) != null || XPatch(elem4) != null || XPatch(elem5) != null) {
+                            if (XPatch(elem1) != null || XPatch(elem2) != null || XPatch(elem3) != null || XPatch(elem4) != null) {
                                 android.block_2("instagram");
                                 if (XPatch(elem1) != null) {
                                     console.log("BLOCK: "+elem1);
@@ -144,9 +150,6 @@ function inst() {
                                 }
                                 if (XPatch(elem4) != null) {
                                     console.log("BLOCK: "+elem4);
-                                }
-                                if (XPatch(elem5) != null) {
-                                    console.log("BLOCK: "+elem5);
                                 }
                             } else {
                                 elem1 = '//*[@id="react-root"]/section/main/div/header/section/div[2]/div/div/div/div/span/span[1]/button';
@@ -179,21 +182,7 @@ function inst() {
                                 elem3 = '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[1]/div/div[2]/div/span/span[1]/button';
                                 if (XPatch(elem1) != null) {
                                     if (XPatch(elem3) != null) {
-                                        click(elem3);
-                                        setTimeout(function() {
-                                            el1 = '/html/body/div[5]/div/div/div/div[3]/button[1]';
-                                            el2 = '/html/body/div[4]/div/div/div/div[3]/button[1]';
-                                            if (XPatch(el1) != null) {
-                                                click(el1);
-                                            } else {
-                                                if (XPatch(el2) != null) {
-                                                    click(el2);
-                                                }
-                                            }
-                                        }, 1000);
-                                        setTimeout(function() {
-                                            inst();
-                                        }, 3000);
+                                        android.next_task();
                                     } else {
                                         if (click_addition) {check_addition = true}
                                         click(elem1);
@@ -202,21 +191,7 @@ function inst() {
                                 }
                                 if (XPatch(elem2) != null) {
                                     if (XPatch(elem3) != null) {
-                                        click(elem3);
-                                        setTimeout(function() {
-                                            el1 = '/html/body/div[5]/div/div/div/div[3]/button[1]';
-                                            el2 = '/html/body/div[4]/div/div/div/div[3]/button[1]';
-                                            if (XPatch(el1) != null) {
-                                                click(el1);
-                                            } else {
-                                                if (XPatch(el2) != null) {
-                                                    click(el2);
-                                                }
-                                            }
-                                        }, 1000);
-                                        setTimeout(function() {
-                                            inst();
-                                        }, 3000);
+                                        android.next_task();
                                     } else {
                                         if (click_addition) {check_addition = true}
                                         click(elem1);
@@ -242,21 +217,7 @@ function inst() {
                                         elem3 = '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[1]/div/div[2]/div/span/span[1]/button';
                                         if (XPatch(elem1) != null) {
                                             if (XPatch(elem3) != null) {
-                                                click(elem3);
-                                                setTimeout(function() {
-                                                    el1 = '/html/body/div[5]/div/div/div/div[3]/button[1]';
-                                                    el2 = '/html/body/div[4]/div/div/div/div[3]/button[1]';
-                                                    if (XPatch(el1) != null) {
-                                                        click(el1);
-                                                    } else {
-                                                        if (XPatch(el2) != null) {
-                                                            click(el2);
-                                                        }
-                                                    }
-                                                }, 1000);
-                                                setTimeout(function() {
-                                                    inst();
-                                                }, 3000);
+                                                android.next_task();
                                             } else {
                                                 if (click_addition) {check_addition = true}
                                                 click(elem1);
@@ -301,21 +262,7 @@ function inst() {
                                     elem1 = '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[2]/div/div/div/span/span[1]/button'
                                     elem2 = '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[2]/div/div[1]/button';
                                     if (XPatch(elem1) != null && XPatch(elem2) != null) {
-                                        click(elem1);
-                                        setTimeout(function() {
-                                            el1 = '/html/body/div[5]/div/div/div/div[3]/button[1]';
-                                            el2 = '/html/body/div[4]/div/div/div/div[3]/button[1]';
-                                            if (XPatch(el1) != null) {
-                                                click(el1);
-                                            } else {
-                                                if (XPatch(el2) != null) {
-                                                    click(el2);
-                                                }
-                                            }
-                                        }, 1000);
-                                        setTimeout(function() {
-                                            inst();
-                                        }, 3000);
+                                        android.next_task();
                                     } else {
                                         if (XPatch(elem1) != null) {
                                             if (click_addition) {check_addition = true}
@@ -328,21 +275,7 @@ function inst() {
                                     if (XPatch(elem1) != null) {
                                         if (XPatch(elem1) != null) {
                                             if (XPatch(elem3) != null) {
-                                                click(elem3);
-                                                setTimeout(function() {
-                                                    el1 = '/html/body/div[5]/div/div/div/div[3]/button[1]';
-                                                    el2 = '/html/body/div[4]/div/div/div/div[3]/button[1]';
-                                                    if (XPatch(el1) != null) {
-                                                        click(el1);
-                                                    } else {
-                                                        if (XPatch(el2) != null) {
-                                                            click(el2);
-                                                        }
-                                                    }
-                                                }, 1000);
-                                                setTimeout(function() {
-                                                    inst();
-                                                }, 3000);
+                                                android.next_task();
                                             } else {
                                                 if (click_addition) {check_addition = true}
                                                 click(elem1);
@@ -643,7 +576,7 @@ function XPatch(xpatch_val) {
         }
         XPatch_elem = document.evaluate(xpatch_val, document, null, XPathResult.ANY_TYPE, null).iterateNext();
     }
-    if (XPatch_elem != null) {console.log("SCRIPT-FIND: "+xpatch_val)}
+    if (XPatch_elem != null) {clearInterval(inst_find); inst_find = null; console.log("SCRIPT-FIND: "+xpatch_val)}
     return XPatch_elem;
 }
 

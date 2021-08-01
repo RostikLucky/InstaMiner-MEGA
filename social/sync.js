@@ -1,10 +1,16 @@
 temp_block = "<block>";
 temp_block_2 = "<block_2>";
 temp_next = "<close_tab_no_load>";
+temp_next_task = "<next_task>";
 class Android {
 	next() {
 	   sync_data(temp_next);
 	   temp_block = "<close_tab_no_load_temp>";
+	}
+
+	next_task() {
+		sync_data(temp_next_task);
+	   	temp_block = "<next_task_temp>";
 	}
 
 	check_task() {
