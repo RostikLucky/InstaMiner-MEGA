@@ -1,6 +1,7 @@
 comment_delay = 0;
 click_addition = false;
 check_addition = false;
+inst_find = null;
 inst_not_find = 0;
 st = false;
 chrome.storage.local.get("im_logout", function (result) { 
