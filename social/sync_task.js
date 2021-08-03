@@ -17,6 +17,11 @@ chrome.storage.local.get("im_status", function (result) {
 						sync_data("<close_tab_no_load>");
 					}
 
+					if ($("#loader").html().indexOf("Invalid task") != -1) {
+						clearInterval(wait_info);
+						sync_data("<close_tab_no_load>");
+					}
+
 					if ($("#loader").html().indexOf("Задания больше не существует") != -1 || $("#loader").html().indexOf("Задание недоступно") != -1 || $("#loader").html().indexOf("Это задание уже недоступно или выполняется") != -1 || $("#loader").html().indexOf("Ошибка. Повторите позже") != -1) {
 						clearInterval(wait_info);
 						sync_data("<close_tab_no_load>");

@@ -1,8 +1,9 @@
 body {
   overflow: hidden;
-  background: #596571;
+  background: #d8d8d8;
   background-size: cover;
   background-position: bottom;
+  --bg_c: #162126;
 }
 
 .outer {
@@ -24,7 +25,7 @@ body {
   width: 100%;
   height: 100vh;
   z-index: 9999;
-  background: #212529;
+  background: var(--bg_c);
   text-align: center;
 }
 
@@ -137,7 +138,7 @@ input::-webkit-inner-spin-button {
 }
 
 .alert-secondary {
-  background-color: #212529;
+  background-color: var(--bg_c);
 }
 
 #donaters {
@@ -206,6 +207,8 @@ input::-webkit-inner-spin-button {
 
 #cards_2 {
   text-align: center; display: -webkit-inline-box;
+  width: 100%;
+  -webkit-box-pack: center;
 } 
 
 #cards_3 {
@@ -430,16 +433,17 @@ a:hover {
 
 .badge-outline-primary {
   background: 0 0;
-  border: 1px solid #ffffff;
+  border: 1px solid var(--bg_c);
   color: #ffffff;
+  background: var(--bg_c);
 }
 
 #text_change_acc {
-  color: #212529;
+  color: var(--bg_c);
 }
 
 #text_change_acc_2 {
-  color: #212529;
+  color: var(--bg_c);
 }
 
 #change_account {
@@ -451,7 +455,7 @@ a:hover {
 }
 
 #manifest_version {
-  color: #212529;
+  color: var(--bg_c);
 }
 
 .nav-item {

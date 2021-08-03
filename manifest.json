@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "InstaMiner MEGA",
-  "version": "34",
+  "version": "35",
   "icons": {
     "128": "ico.png"
   },
@@ -21,7 +21,7 @@
   "content_scripts": [
   {
     "matches": ["*://*.instagram.com/*"],
-      "js": ["jquery.js", "social/instagram/script.js", "social/instagram/logout.js", "social/instagram/login.js", "social/sync.js"],
+      "js": ["jquery.js", "social/sync.js", "social/instagram/script.js", "social/instagram/logout.js", "social/instagram/login.js"],
       "run_at": "document_end"
     },
     {

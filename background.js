@@ -50,7 +50,10 @@ click_addition = false;
 /// Открыть главное меню
 chrome.browserAction.onClicked.addListener(function() {
 	if (window_id == null) {
-		chrome.storage.local.get("im_size_popup", function (result) { 
+		chrome.tabs.create({'url': 'popup/index.html', active: true}, function(val) {
+	   		window_id = val.id;
+	   	});
+		/* chrome.storage.local.get("im_size_popup", function (result) { 
 			if (result.im_size_popup !== undefined) {
 				if (result.im_size_popup.length > 0) {
 					im_size = true;
@@ -69,23 +72,22 @@ chrome.browserAction.onClicked.addListener(function() {
 			   		window_id = val.id;
 			   	});
 			}
-		});
+		}); */
    	} else {
-		chrome.windows.update(window_id, {'focused': true}, (tab) => { });
+		chrome.tabs.update(window_id, {'active': true}, (tab) => { });
    	}
 });
 
 /// Сохранить изменение размера окна
-chrome.windows.onBoundsChanged.addListener(function(val) {
+/* chrome.windows.onBoundsChanged.addListener(function(val) {
 	size = [val.width, val.height, val.top, val.left];
-});
+}); */
 
 /// Остановить бота при закрытии меню
-chrome.windows.onRemoved.addListener(function(id) {
+chrome.tabs.onRemoved.addListener(function(id) {
 	if (id == window_id) {
 		window_id = null;
 		chrome.storage.local.set({"im_status": false});
-		chrome.storage.local.set({"im_size_popup": size});
 	}
 });
 

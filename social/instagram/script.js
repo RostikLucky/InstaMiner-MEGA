@@ -34,8 +34,8 @@ chrome.storage.local.get("im_logout", function (result) {
                                 inst_find = setInterval(function() {
                                     inst();
                                     inst_not_find++;
-                                    if (inst_not_find > 100) {
-                                        android.next_task();
+                                    if (inst_not_find > 50) {
+                                        android.next_task_2();
                                     }
                                 }, 300);
                             }
@@ -109,19 +109,17 @@ function inst() {
                     android.block("instagram");
                     console.log("BLOCK: "+elem);
                 }
-                
-                //elem = '//*[@id="react-root"]/section/main/div/div/div/div/a';
-                //if (XPatch(elem) != null) {
-                //    android.next();
-                //}
-                if (document.location.pathname.split("/").length >= 5) {
-                    if (document.location.href.indexOf("www.instagram.com/https://www.instagram.com") != -1) {
-                        android.next();
-                    } else {
-                        document.location.href = document.location.href.replace(document.location.pathname.split("/")[3]+"/", "");
-                    }
+                elem = '//*[@id="react-root"]/section/main/div/div/h2';
+                if (XPatch(elem) != null) {
+                    android.next_task();
                 }
-
+                elem = '//*[@id="react-root"]/section/main/div/div/div/div/a';
+                if (XPatch(elem) != null) {
+                    android.next_task();
+                }
+                if (document.location.pathname.split("/").length >= 5) {
+                    android.next_task();
+                }
             }, 1500);
             elem = '//*[@id="react-root"]/section/div/div/div[3]/form/div[2]/span/button';
             if (XPatch(elem) != null) {

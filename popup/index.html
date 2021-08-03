@@ -42,7 +42,7 @@
             <li class="nav-item"><a class="nav-link active" href="#" id_elem="0">Добро пожаловать!</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="1">Главная страница</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="2">Аккаунты</a></li>
-            <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="6">Аккаунты WIQ</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" id_elem="3">Аккаунты WIQ</a></li>
         </ul>
     </div>
     <!-- Welcome страница -->
@@ -132,9 +132,15 @@
             </div>
         </div>
     </div>
-    <!-- Топ донатеров -->
-    <div class="card-body" id="donaters" style="display: none;">
-       
+    <!-- Аккаунты WIQ -->
+    <div class="card-body card-body-acc" style="display: none;">
+        <div class="outer">
+            <div class="inner">
+                <div class="card" id="change_account_2"></div>
+                <p class="card-text" id="text_change_acc_2" style="margin-bottom: 1px; margin-top: 10px;">Включите автосмену аккаунтов WIQ в настройках бота</p>
+                <p class="card-text" style="margin-bottom: 1px; margin-top: 10px;"><a href="https://telegra.ph/Kak-dobavit-akkaunty-WIQ-v-bota-07-07" target="_blank" style="color: var(--bg_c);">Инструкция по добавлению аккаунтов</a></p>
+            </div>
+        </div>
     </div>
     <!-- Ошибка входа в wiq.ru -->
     <div class="card-body" style="display: none;">
@@ -146,21 +152,6 @@
                 <p class="card-text">Можете выполнить <b>одно или два задания</b> на сайте</p>
                 <a href="https://wiq.ru/tasks.php?ref=1128799" target="_blank" class="btn btn-primary" style="width: 215px; height: 40px;">Войти в аккаунт</a>
                 <a href="#" style="width: 40px; height: 40px; margin-left: 10px" id="update_page" class="btn btn-primary"><i class="fa fa-retweet mr-2" style="margin-left: -7.5px;"></i></a>
-            </div>
-        </div>
-    </div>
-    <!-- Топ донатеров -->
-    <div class="card-body" id="top_users" style="display: none;">
-        
-    </div>
-
-     <!-- Аккаунты WIQ -->
-    <div class="card-body card-body-acc" style="display: none;">
-        <div class="outer">
-            <div class="inner">
-                <div class="card" id="change_account_2"></div>
-                <p class="card-text" id="text_change_acc_2" style="margin-bottom: 1px; margin-top: 10px;">Включите автосмену аккаунтов WIQ в настройках бота</p>
-                <p class="card-text" style="margin-bottom: 1px; margin-top: 10px;"><a href="https://telegra.ph/Kak-dobavit-akkaunty-WIQ-v-bota-07-07" target="_blank">Инструкция по добавлению аккаунтов</a></p>
             </div>
         </div>
     </div>
@@ -210,7 +201,7 @@
                     <span class="label">Задержка между выполнением задания (сек)</span>
                     <span class="focus-bg"></span>
                 </label>
-                <label for="inp" class="inp">
+                <label for="inp" class="inp" style="display: none">
                     <input type="number" placeholder="&nbsp;" id="delay_task_2">
                     <span class="label">Задержка между проверкой задания (сек)</span>
                     <span class="focus-bg"></span>

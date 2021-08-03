@@ -20,9 +20,15 @@ class Android {
    		}
 	}
 
+	next_task_2() {
+		sync_data("<next_task>");
+	}
+
 	check_task() {
-		stat = false;
-      	sync_data("<check_task>");
+		if (stat == true) {
+			stat = false;
+      		sync_data("<check_task>");
+  		}
 	}
 
 	block(val) {
