@@ -165,7 +165,5 @@
 * Если вы хотите поддержать автора бота, то можете отправить копейку через https://www.donationalerts.com/r/rostiklucky 
 
 
-* Или зарегистрируйтесь по реферальной ссылке https://instagram777.ru/tasks.php?ref=1128799
+* Или зарегистрируйтесь по реферальной ссылке https://wiq.ru/tasks.php?ref=1128799
 
-
-* Топ донатов https://instaminer.goh.su/donaters.php
