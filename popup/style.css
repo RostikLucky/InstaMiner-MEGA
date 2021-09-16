@@ -468,3 +468,7 @@ a:hover {
 .nav-link {
   height: 30px;
 }
+
+.modal-footer {
+  display: block;
+}
