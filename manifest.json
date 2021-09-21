@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "InstaMiner MEGA",
-  "version": "37",
+  "version": "38",
   "icons": {
     "128": "ico.png"
   },
